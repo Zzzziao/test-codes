@@ -38,7 +38,7 @@ image_path = "hazy input/H1.jpg"
 input_mode = "noise"
 input_depth = 3
 padding_mode = "reflection"
-num_iterations = 2600
+num_iterations = 1800 #2000
 network_learning_rate = 1e-2
 physical_parameter_learning_rate = 1e-3
 
@@ -50,7 +50,7 @@ min_alpha = 1.0
 omega = 0.95
 min_transmission = 0.1
 wls_epsilon = 1e-4
-cg_iterations = 2000
+cg_iterations = 1500
 
 # DIP regularization and output smoothing
 reg_noise_std = 1.0 / 30.0

@@ -39,3 +39,33 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+gt = Image.open('hazy input/1449-gt.png').convert('RGB').resize((128, 128), Image.Resampling.LANCZOS)
+gt.save('results/1449 2000 it/gt.png')
+
+folder = Path(__file__).resolve().parent / "results" / "1449 2000 it"
+
+reference_path = folder / "gt.png"
+prediction_path = folder / "out_02000.png"
+
+def load_rgb(path):
+    with Image.open(path) as image:
+        return np.asarray(image.convert("RGB"), dtype=np.float64)
+
+
+reference = load_rgb(reference_path)
+prediction = load_rgb(prediction_path)
+
+if reference.shape != prediction.shape:
+    raise ValueError(
+        f"Size of images different：Ground truth {reference.shape}，Dehazed {prediction.shape}"
+    )
+
+mse = np.mean((reference - prediction) ** 2)
+psnr = float("inf") if mse == 0 else 10 * np.log10(255.0 ** 2 / mse)
+
+print(f"Reference:  {reference_path}")
+print(f"Prediction: {prediction_path}")
+print(f"RGB PSNR: {psnr:.4f} dB")

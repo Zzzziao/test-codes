@@ -59,7 +59,7 @@ ema_weight = 0.90
 
 # Monitoring
 plot = True
-show_every = 200
+show_every = 100
 check_every = 100
 psnr_drop_threshold = 5.0
 figure_size = 5

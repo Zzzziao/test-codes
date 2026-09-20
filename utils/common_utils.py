@@ -260,3 +260,16 @@ def optimize(optimizer_type, parameters, closure, LR, num_iter):
             optimizer.step()
     else:
         assert False
+
+
+def tv_loss(x, beta=1):  ## beta = 0.5
+    '''Calculates TV loss for an image `x`.
+
+    Args:
+        x: image, torch.Variable of torch.Tensor
+        beta: See https://arxiv.org/abs/1412.0035 (fig. 2) to see effect of `beta`
+    '''
+    dh = torch.pow(x[:, :, :, 1:] - x[:, :, :, :-1], 2)
+    dw = torch.pow(x[:, :, 1:, :] - x[:, :, :-1, :], 2)
+
+    return torch.sum(torch.pow(dh[:, :, :-1] + dw[:, :, :, :-1], beta))

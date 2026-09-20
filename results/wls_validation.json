@@ -1,0 +1,23 @@
+{
+  "image_transmission": {
+    "max_error": 1.8340298169050584e-08,
+    "mean_error": 2.4196416376630303e-09
+  },
+  "random": {
+    "max_error": 5.939973265450815e-06,
+    "mean_error": 4.0410150660380265e-07
+  },
+  "constant": {
+    "max_error": 3.6387559632089506e-13,
+    "mean_error": 3.6387559632089506e-13
+  },
+  "alpha_raw": {
+    "gradient": 0.0038129946002779433,
+    "finite_difference": 0.0038129946081100208
+  },
+  "lambda_raw": {
+    "gradient": 0.003060159068341893,
+    "finite_difference": 0.0030601590712830973
+  },
+  "status": "All reference, gradient, batch, degenerate-size, and network-shape checks passed"
+}

@@ -1,8 +1,10 @@
-import torch.nn as nn
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from .common import *
+
+# adopted from DIP models/U_net.py
+# changed: pad=1 instead of pad='zero'
 
 class ListModule(nn.Module):
     def __init__(self, *args):
@@ -112,8 +114,8 @@ class UNet_new(nn.Module):
 
             up_ = self.more_ups[-1](prevs[-1], prevs[-2])
             for idx in range(self.more_layers - 1):
-                l = self.more_ups[self.more - idx - 2]
-                up_ = l(up_, prevs[self.more - idx - 2])
+                l = self.more_ups[self.more_layers - idx - 2]
+                up_ = l(up_, prevs[self.more_layers - idx - 2])
         else:
             up_ = down4
 
@@ -126,6 +128,7 @@ class UNet_new(nn.Module):
 
 
 class unetConv2(nn.Module):
+    """Two 3x3 convolution blocks for local feature extraction and refinement."""
     def __init__(self, in_size, out_size, norm_layer, need_bias, pad=1):
         super(unetConv2, self).__init__()
 

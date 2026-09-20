@@ -63,13 +63,6 @@ def TransmissionEstimate_WLS(im,A,sz, lambda_ = 0.35, alpha = 1.2):
     transmission = 1 - omega*DarkChannel(im3,sz);
     transmission_wls = wls_filter(transmission, lambda_, alpha)
 
-    # fig, axes = plt.subplots(1, 2, figsize=(10, 5))
-    # axes[0].imshow(dark_est)
-    # axes[0].set_title("Dark est")
-    # axes[1].imshow(dark_est_wls)
-    # axes[1].set_title("Dark est WLS")
-    # plt.show()
-
     return transmission_wls
 
 
